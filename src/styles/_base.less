@@ -1,0 +1,113 @@
+@import "_variables.less";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: @containerMaxWidth;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: @headerColor;
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+    }
+
+    .menu {
+        display: flex;
+
+        li {
+            font-weight: bold;
+            margin-left: @menuItemMarginLeft;
+
+            a {
+                color: @textColor;
+                text-decoration: none;
+                transition: color 0.3s ease;
+
+                &:hover {
+                    color: lighten(@textColor, 20%);
+                }
+            }
+        }
+    }
+}
+
+section {
+    padding: @paddingSection;
+}
+
+.products {
+    margin-top: @productItemMarginTop;
+    display: grid;
+    grid-template-columns: repeat(3, 32.66%);
+    column-gap: 1%;
+    row-gap: 4%;
+    width: 100%;
+}
+
+.product-item {
+    img {
+        width: 100%;
+        border-radius: @imageBorderRadius;
+        display: block;
+    }
+
+    .product-button {
+        display: block;
+        background-color: @buttonColor;
+        color: @textColor;
+        text-align: center;
+        padding: @productButtonPadding;
+        border-radius: @borderRadius;
+        margin-top: @borderRadius;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: @buttonHoverColor;
+        }
+    }
+}
+
+@media-query-tablet: ~"screen and (max-width: " extract(@breakpoints, tablet) ")";
+@media-query-mobile: ~"screen and (max-width: " extract(@breakpoints, mobile) ")";
+
+@{media-query-tablet} {
+    .container {
+        max-width: 80%;
+    }
+
+    .products {
+        grid-template-columns: repeat(2, 48.5%);
+        column-gap: 3%;
+    }
+}
+
+@{media-query-mobile} {
+    .products {
+        display: block;
+    }
+
+    .product-item {
+        margin-bottom: 32px;
+    }
+}
